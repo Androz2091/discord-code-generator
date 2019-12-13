@@ -1,0 +1,56 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Discord Token Generator</title>
+        <style>
+          .container {
+            display: flex;
+            width: 100%;
+            padding: 40px 0;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .container a {
+            background: #7289DA;
+            padding: 0 20px;
+            line-height: 35px;
+            color: #fff;
+            font-family: 'Helvetica', 'Arial', sans-sefir;
+            font-size: 20px;
+            display: block;
+            text-decoration: none;
+            border-radius: 3px;
+          }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div v-show="displayButton" class="container">
+                <a style="background:#DC143C" href="https://discordapp.com/api/oauth2/authorize?client_id=655076465267834946&redirect_uri=https%3A%2F%2Fandroz2091.github.io%2Fdiscord-code-generator&response_type=code&scope=identify">Generate new Discord code</a>
+            </div>
+            <div v-show="displayCode" class="container">
+                <a>{{ code }}</a>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    displayButton:  false,
+                    displayCode:    false,
+                    code:           "null"
+                }
+            });
+            let code = window.location.search.split("=")[1];
+            if(code){
+                vm.displayButton = false;
+                vm.displayCode = true;
+                vm.code = code;
+            } else {
+                vm.displayButton = true;
+            }
+        </script>
+    </body>
+</html>
